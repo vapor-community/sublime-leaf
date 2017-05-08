@@ -8,10 +8,10 @@ For the best install experience, please use [Package Control](https://packagecon
 
 Then, do the following in Sublime Text:
 1) `<CMD>`+`<SHIFT>`+`<P>`
-2) Package Control: Add Repository
+2) `Package Control: Add Repository`
 3) https://github.com/vapor-community/sublime-leaf
-4) Package Control: Install Package
-5) sublime-leaf
+4) `Package Control: Install Package`
+5) `sublime-leaf`
 
 # 👥 Author
 Brett Toomey [@BrettRToomey](https://twitter.com/BrettRToomey)  
