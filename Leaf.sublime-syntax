@@ -19,7 +19,7 @@ contexts:
     - meta_scope: string.quoted.double.leaf
     - match: '"'
       pop: true
-    - match: (#+([A-Za-z_][A-Za-z_0-9]*)*)(?=\()
+    - match: (#+([A-Za-z_][A-Za-z0-9-_:]*)*)(?=\()
       scope: entity.name.tag
       push: params
     - match: \\.
