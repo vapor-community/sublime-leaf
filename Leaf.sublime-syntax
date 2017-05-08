@@ -1,0 +1,38 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions:
+  - leaf
+scope: source.leaf
+contexts:
+  main:
+    - match: ""
+      push: "Packages/HTML/HTML.sublime-syntax"
+      with_prototype:
+        - match: (#+([A-Za-z_][A-Za-z_0-9]*)*)(?=\()
+          scope: entity.name.tag
+          push: params
+
+
+
+  string:
+    - meta_scope: string.quoted.double.leaf
+    - match: '"'
+      pop: true
+    - match: (#+([A-Za-z_][A-Za-z_0-9]*)*)(?=\()
+      scope: entity.name.tag
+      push: params
+    - match: \\.
+      scope: constant.character
+
+  params:
+    - match: '[A-Za-z_][A-Za-z_0-9]*'
+      scope: entity.other.attribute-name
+
+    - match: '"'
+      push: string
+
+    - match: '\('
+    - match: ','
+    - match: '\)'
+      pop: true
