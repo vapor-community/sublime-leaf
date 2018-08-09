@@ -9,30 +9,53 @@ contexts:
     - match: ""
       push: "Packages/HTML/HTML.sublime-syntax"
       with_prototype:
-        - match: (#+([A-Za-z_][A-Za-z0-9-_:]*)*)(?=\()
-          scope: entity.name.tag
-          push: params
-
-
-
+        - match: \#(?=[A-Za-z-_]*\()
+          scope: keyword
+          push: tag
+        - match: (?=else\s*if\s*\()
+          scope: keyword
+          push: tag
+        - match: (?=else\s*\{)
+          scope: keyword
+          push: tag
+        - match: \#\/\/.*
+          scope: comment
+        - match: '\{'
+          scope: punctuation
+        - match: '\}'
+          scope: punctuation
+  tag: 
+    - match: ((else if|else)\s*)
+      scope: keyword
+    - match: ([A-Za-z_][A-Za-z0-9-_]*)
+      scope: keyword
+    - match: '\('
+      push: params
+    - match: (?=.)
+      pop: true
   string:
-    - meta_scope: string.quoted.double.leaf
+    - meta_scope: string.quoted.double
     - match: '"'
       pop: true
     - match: (#+([A-Za-z_][A-Za-z0-9-_:]*)*)(?=\()
-      scope: entity.name.tag
+      scope: entity.name.function
       push: params
-    - match: \\.
+    - match: \\"
       scope: constant.character
-
   params:
-    - match: '[A-Za-z_][A-Za-z_0-9]*'
-      scope: entity.other.attribute-name
-
+    - match: (?=[A-Za-z_][A-Za-z0-9-_:]*\()
+      push: tag
     - match: '"'
       push: string
-
+    - match: \d
+      scope: constant.numeric.integer
+    - match: '[\!\=\|\&\-\+]+'
+      scope: punctuation
+    - match: 'in'
+      scope: keyword
     - match: '\('
+      push: params
+    - match: '\s+'
     - match: ','
     - match: '\)'
       pop: true
