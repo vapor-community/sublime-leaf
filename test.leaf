@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>#import(title)</title>
+</head>
+<body>
+	#// Say hello to the users
+	#for(user in users) {
+		Hello #(user.name)!
+
+		#if(user.name == "V\a\"por") {
+			<p>Cool name :)</p>
+		}
+	}
+
+	<p>This is a #hashtag</p>
+
+	#if(count(users) == (0 + 1 - 2)) {
+		There are no users.
+	} else if (count(users) == 1) {
+		There is one user.
+	} else {
+		There are #count(users) users.
+	}
+</body>
+</html>
